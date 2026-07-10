@@ -1,0 +1,45 @@
+<%- layout("/layouts/boilerplate") %>
+<body>
+    <h2 class="mb-3 mt-3">All Listings</h2>
+
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
+        <% for( listing of allListings ) { %>
+            <a href="/listings/<%= listing._id %>" class="listing-link">
+                <div class="card show-card col">
+                    <div style="position: relative; width: 100%;">
+                        <img src="<%= listing.image %>" 
+                            class="card-img-top" 
+                            alt="listing_image"
+                            style="height: 18rem; width: 100%; object-fit: cover;">
+                        
+                        <!-- Text Overlay on Image -->
+                        <div style="position: absolute;
+                                    top: 12px;
+                                    left: 12px; 
+                                    background: rgba(255, 255, 255, 0.95);
+                                    color: #222; 
+                                    font-size: 12px; 
+                                    font-weight: 500;
+                                    letter-spacing: 0.3px;
+                                    padding: 4px 12px;
+                                    border-radius: 20px;
+                                    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                                    backdrop-filter: blur(4px);
+                                    border: 1px solid rgba(255, 255, 255, 0.3);">
+                            <%= listing.type.charAt(0).toUpperCase() + listing.type.slice(1).toLowerCase()  %>
+
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b style="font-weight: 500;"><%= listing.title %></b> <br>
+                            &#8377; <%= listing.price.toLocaleString("en-IN") %> / night <br>
+                            <span style="font-weight: 300; margin: 0; padding: 0;"><%= listing.country %></span>
+                            
+                        </p>
+                    </div>
+                </div>
+            </a>
+        <% } %>     
+    </div>
