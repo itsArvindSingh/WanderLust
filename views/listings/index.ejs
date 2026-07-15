@@ -5,10 +5,10 @@
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
         <% for( listing of allListings ) { %>
             <a href="/listings/<%= listing._id %>" class="listing-link">
-                <div class="card show-card col">
+                <div class="card show-card col listing-card">
                     <div style="position: relative; width: 100%;">
                         <img src="<%= listing.image %>" 
-                            class="card-img-top" 
+                            class="all-card-img-top" 
                             alt="listing_image"
                             style="height: 18rem; width: 100%; object-fit: cover;">
                         

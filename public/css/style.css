@@ -60,18 +60,22 @@ body{
 
 /* Cards */
 
-.card{
+.listing-card{
     border: none !important;
     margin-bottom: 2rem;
     border-radius: 1rem;
 } /* Card Effect */
 
+.show-card{
+    transition: all 0.3s ease;
+}
+
 .show-card:hover{
-    transform: scale(1.01);
+    transform: scale(1.02);
     box-shadow: 0 7.5px 15px rgba(0,0,0,0.2);
 }
 
-.card-img-top{
+.all-card-img-top{
     border-radius: 1rem 1rem 0 0;
      width: 100%;
      object-fit: cover;
@@ -115,4 +119,8 @@ textarea{
 .detailed-card{
     padding-left: 0;
     padding-right: 0;
+}
+
+.show-card-img-top{
+    border-radius: 0;
 }
