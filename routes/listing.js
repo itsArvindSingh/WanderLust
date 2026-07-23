@@ -3,27 +3,28 @@ const router = express.Router();
 const Listing = require("../models/listing.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const {isLoggedIn, isOwner, validateListing} = require("../middleware.js");
+const multer  = require('multer');
+const {storage} = require("../cloudConfig.js");
+const upload = multer({ storage })
 
 const listingController = require("../controllers/listings.js");
 
-// to show all listing
-router.get("", wrapAsync(listingController.index));
+// to show all listing and Create Route: to store new listing data in database
+router.route("")
+    .get(wrapAsync(listingController.index))
+    .post(isLoggedIn, upload.single('listing[image]'), validateListing, wrapAsync(listingController.createListing));
+
 
 // to add new listing 
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-// Create Route: to store new listing data in database
-router.post("", isLoggedIn, validateListing, wrapAsync(listingController.createListing));
-
-//  to show a particular listing info
-router.get("/:id", wrapAsync(listingController.showListing));
+//  to show a particular listing info and to save edited dataf
+router.route("/:id")
+    .get(wrapAsync(listingController.showListing))
+    .put(isLoggedIn, isOwner, validateListing, wrapAsync(listingController.updateListing))
+    .delete(isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
 
 // to edit listing
-router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm));
-//  to save edited dataf
-router.put("/:id", isLoggedIn, isOwner, validateListing, wrapAsync(listingController.updateListing));
-
-// to delete lsiting
-router.delete("/:id", isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
+router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.renderEditForm)); 
 
 module.exports = router;
