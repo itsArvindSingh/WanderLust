@@ -9,7 +9,12 @@ const sampleListing = [
     price: 8500,
     location: "Malibu",
     country: "USA",
-    type: "villa"
+    type: "villa",
+    category: "beachfront",
+    geometry: {
+      type: "Point",
+      coordinates: [-118.7798, 34.0259]
+    }
   },
   {
     title: "Cozy Mountain Cabin",
@@ -21,7 +26,12 @@ const sampleListing = [
     price: 4500,
     location: "Aspen",
     country: "USA",
-    type: "house"
+    type: "house",
+    category: "cabins",
+    geometry: {
+      type: "Point",
+      coordinates: [-106.8175, 39.1911]
+    }
   },
   {
     title: "Luxury Penthouse Suite",
@@ -33,7 +43,12 @@ const sampleListing = [
     price: 12000,
     location: "New York",
     country: "USA",
-    type: "hotel"
+    type: "hotel",
+    category: "luxury",
+    geometry: {
+      type: "Point",
+      coordinates: [-74.0060, 40.7128]
+    }
   },
   {
     title: "Tropical Island Bungalow",
@@ -45,7 +60,12 @@ const sampleListing = [
     price: 15000,
     location: "Bora Bora",
     country: "French Polynesia",
-    type: "villa"
+    type: "villa",
+    category: "beachfront",
+    geometry: {
+      type: "Point",
+      coordinates: [-151.7415, -16.5004]
+    }
   },
   {
     title: "Rustic Farmhouse Estate",
@@ -57,7 +77,12 @@ const sampleListing = [
     price: 6000,
     location: "Tuscany",
     country: "Italy",
-    type: "house"
+    type: "house",
+    category: "luxury",
+    geometry: {
+      type: "Point",
+      coordinates: [11.2558, 43.7710]
+    }
   },
   {
     title: "Downtown Loft Apartment",
@@ -69,7 +94,12 @@ const sampleListing = [
     price: 5000,
     location: "Chicago",
     country: "USA",
-    type: "apartment"
+    type: "apartment",
+    category: "iconic-cities",
+    geometry: {
+      type: "Point",
+      coordinates: [-87.6298, 41.8781]
+    }
   },
   {
     title: "Seaside Cottage",
@@ -81,7 +111,12 @@ const sampleListing = [
     price: 4000,
     location: "Cornwall",
     country: "UK",
-    type: "house"
+    type: "house",
+    category: "beachfront",
+    geometry: {
+      type: "Point",
+      coordinates: [-5.0510, 50.2660]
+    }
   },
   {
     title: "Modern Glass House",
@@ -93,7 +128,12 @@ const sampleListing = [
     price: 18000,
     location: "Los Angeles",
     country: "USA",
-    type: "house"
+    type: "house",
+    category: "luxury",
+    geometry: {
+      type: "Point",
+      coordinates: [-118.2437, 34.0522]
+    }
   },
   {
     title: "Historic Townhouse",
@@ -105,7 +145,12 @@ const sampleListing = [
     price: 8000,
     location: "London",
     country: "UK",
-    type: "house"
+    type: "house",
+    category: "iconic-cities",
+    geometry: {
+      type: "Point",
+      coordinates: [-0.1276, 51.5074]
+    }
   },
   {
     title: "Minimalist Studio",
@@ -117,7 +162,12 @@ const sampleListing = [
     price: 3000,
     location: "Berlin",
     country: "Germany",
-    type: "apartment"
+    type: "apartment",
+    category: "iconic-cities",
+    geometry: {
+      type: "Point",
+      coordinates: [13.4050, 52.5200]
+    }
   },
   {
     title: "Mediterranean Villa",
@@ -129,7 +179,12 @@ const sampleListing = [
     price: 14000,
     location: "Santorini",
     country: "Greece",
-    type: "villa"
+    type: "villa",
+    category: "luxury",
+    geometry: {
+      type: "Point",
+      coordinates: [25.4317, 36.3932]
+    }
   },
   {
     title: "Urban Garden Flat",
@@ -141,7 +196,12 @@ const sampleListing = [
     price: 4500,
     location: "Amsterdam",
     country: "Netherlands",
-    type: "apartment"
+    type: "apartment",
+    category: "iconic-cities",
+    geometry: {
+      type: "Point",
+      coordinates: [4.9041, 52.3676]
+    }
   },
   {
     title: "Waterfront Condo",
@@ -153,7 +213,12 @@ const sampleListing = [
     price: 13000,
     location: "Miami",
     country: "USA",
-    type: "hotel"
+    type: "hotel",
+    category: "beachfront",
+    geometry: {
+      type: "Point",
+      coordinates: [-80.1918, 25.7617]
+    }
   },
   {
     title: "Countryside Estate",
@@ -165,7 +230,12 @@ const sampleListing = [
     price: 22000,
     location: "Provence",
     country: "France",
-    type: "villa"
+    type: "villa",
+    category: "luxury",
+    geometry: {
+      type: "Point",
+      coordinates: [5.3698, 43.2965]
+    }
   },
   {
     title: "Zen Garden House",
@@ -177,7 +247,12 @@ const sampleListing = [
     price: 7500,
     location: "Kyoto",
     country: "Japan",
-    type: "house"
+    type: "house",
+    category: "cabins",
+    geometry: {
+      type: "Point",
+      coordinates: [135.7681, 35.0116]
+    }
   }
 ];
 

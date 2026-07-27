@@ -57,10 +57,6 @@ async function main() {
     await mongoose.connect(mangoUrl);
 };
 
-app.get("/", (req,res) => {
-    res.send(`Hy i am root`);
-});
-
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -85,22 +81,19 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
+app.use((req, res, next) => {
+    console.log("404 handler triggered for:", req.originalUrl); // Debug log
+    next(new ExpressError(404, "Page Not Found!"));
+});
 
-
-app.get("/demouser", async (req, res) => {
-    let fakeUser = new User({
-        email: "student@gmail.com",
-        username: "itsbuntyy"
-    });
-    let registeredUser = await User.register(fakeUser, "mypassward");
-    res.send(registeredUser);
-})
-
-// Error handler 
+// ERROR HANDLER - MUST COME LAST
 app.use((err, req, res, next) => {
-    let { statusCode = 500, message = "something went wrong"} = err;
-    console.log(err);
-    res.render("error.ejs", { err  });
+    console.log("Error handler triggered for:", req.originalUrl);
+    let { statusCode = 500, message = "something went wrong" } = err;
+    console.error("Error:", err);
+    res.status(statusCode).render("error.ejs", { 
+        err: { statusCode, message } 
+    });
 });
 
 app.listen(8080, () => {

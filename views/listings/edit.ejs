@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-8 offset-2">
             <h3 class="mt-3">Edit Your Listing:</h3>
-            <form  class="needs-validation" method="post" action="/listings/<%= listing._id %>?_method=PUT" novalidate>
+            <form class="needs-validation" method="post" enctype="multipart/form-data" action="/listings/<%= listing._id %>?_method=PUT" novalidate>
 
                 <div class="mb-3">
                     <label class="form-label" for="title">Title</label>
@@ -11,7 +11,7 @@
                         class="form-control" 
                         id="title" type="text" 
                         name="listing[title]"
-                        value=" <%= listing.title %>"
+                        value="<%= listing.title %>"
                         required>
                         <div class="invalid-feedback">Please Enter Title</div>
                 </div>
@@ -27,16 +27,16 @@
                     <div class="invalid-feedback">Please Enter Description</div>
                 </div>
                 
+                <div class="mb-3">
+                    Original Listing Image <br>
+                    <img src="<%= originalImageUrl %>" alt="Original Listing Image" style="max-width: 200px;">
+                </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="image">Image</label>
-                    <textarea  
-                        class="form-control" 
-                        id="image" 
-                        name="listing[image]"
-                        required
-                        ><%= listing.image %></textarea>
-                        <div class="invalid-feedback">Please Enter Image Link</div>
+                    <label class="form-label" for="image">Upload New Image</label>
+                    <input type="file"
+                        class="form-control"
+                        name="listing[image]">
                 </div>
                 
                 <div class="row">
@@ -65,33 +65,79 @@
                             <div class="invalid-feedback">Please Enter Country</div>
                     </div>
                     
-
                     <div class="mb-3 col-4">
                         <label class="form-label" for="type">Type</label>
-                        <input 
-                            class="form-control" 
-                            id="type" 
-                            type="text" 
-                            name="listing[type]" 
-                            value="<%= listing.type %>"
-                            required>
-                            <div class="invalid-feedback">Please Enter Type</div>
+                        <select class="form-select" id="type" name="listing[type]" required>
+                            <option value="">Select Type</option>
+                            <option value="villa" <%= listing.type === 'villa' ? 'selected' : '' %>>Villa</option>
+                            <option value="house" <%= listing.type === 'house' ? 'selected' : '' %>>House</option>
+                            <option value="hotel" <%= listing.type === 'hotel' ? 'selected' : '' %>>Hotel</option>
+                            <option value="apartment" <%= listing.type === 'apartment' ? 'selected' : '' %>>Apartment</option>
+                            <option value="cottage" <%= listing.type === 'cottage' ? 'selected' : '' %>>Cottage</option>
+                            <option value="bungalow" <%= listing.type === 'bungalow' ? 'selected' : '' %>>Bungalow</option>
+                            <option value="cabin" <%= listing.type === 'cabin' ? 'selected' : '' %>>Cabin</option>
+                            <option value="castle" <%= listing.type === 'castle' ? 'selected' : '' %>>Castle</option>
+                            <option value="boat" <%= listing.type === 'boat' ? 'selected' : '' %>>Boat</option>
+                        </select>
+                        <div class="invalid-feedback">Please Select a Type</div>
                     </div>
-
                 </div>
-                
-                
+
+                <!-- New Category Dropdown -->
+                <div class="mb-3">
+                    <label class="form-label" for="category">Category/Filter</label>
+                    <select class="form-select" id="category" name="listing[category]">
+                        <option value="">Select Category (Optional)</option>
+                        <option value="trending" <%= listing.category === 'trending' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-fire"></i> Trending
+                        </option>
+                        <option value="rooms" <%= listing.category === 'rooms' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-bed"></i> Rooms
+                        </option>
+                        <option value="iconic-cities" <%= listing.category === 'iconic-cities' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-mountain-city"></i> Iconic Cities
+                        </option>
+                        <option value="mountains" <%= listing.category === 'mountains' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-mountain"></i> Mountains
+                        </option>
+                        <option value="caves" <%= listing.category === 'caves' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-dungeon"></i> Caves
+                        </option>
+                        <option value="luxury" <%= listing.category === 'luxury' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-house-chimney-window"></i> Luxury
+                        </option>
+                        <option value="castles" <%= listing.category === 'castles' ? 'selected' : '' %>>
+                            <i class="fa-brands fa-fort-awesome"></i> Castles
+                        </option>
+                        <option value="amazing-pools" <%= listing.category === 'amazing-pools' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-person-swimming"></i> Amazing Pools
+                        </option>
+                        <option value="cabins" <%= listing.category === 'cabins' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-tree"></i> Cabins
+                        </option>
+                        <option value="beachfront" <%= listing.category === 'beachfront' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-umbrella-beach"></i> Beachfront
+                        </option>
+                        <option value="camping" <%= listing.category === 'camping' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-campground"></i> Camping
+                        </option>
+                        <option value="boats" <%= listing.category === 'boats' ? 'selected' : '' %>>
+                            <i class="fa-solid fa-sailboat"></i> Boats
+                        </option>
+                    </select>
+                    <div class="form-text">Select a category/filter for your listing (optional)</div>
+                </div>
 
                 <div class="mb-3">
-                        <label class="form-label" for="location">Location</label>
-                        <input 
-                            class="form-control" 
-                            id="location" 
-                            type="text" 
-                            name="listing[location]" 
-                            value="<%= listing.location %>"
-                            required>
-                            <div class="invalid-feedback">Please Enter Valid Location</div>
+                    <label class="form-label" for="location">Location</label>
+                    <input 
+                        class="form-control" 
+                        id="location" 
+                        type="text" 
+                        name="listing[location]" 
+                        value="<%= listing.location %>"
+                        required>
+                        <div class="invalid-feedback">Please Enter Valid Location</div>
                 </div>
                 
                 <button class="btn btn-dark new-btn mb-3">Save</button>

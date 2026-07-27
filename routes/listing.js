@@ -21,7 +21,7 @@ router.get("/new", isLoggedIn, listingController.renderNewForm);
 //  to show a particular listing info and to save edited dataf
 router.route("/:id")
     .get(wrapAsync(listingController.showListing))
-    .put(isLoggedIn, isOwner, validateListing, wrapAsync(listingController.updateListing))
+    .put(isLoggedIn, isOwner, upload.single('listing[image]'), validateListing, wrapAsync(listingController.updateListing))
     .delete(isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
 
 // to edit listing

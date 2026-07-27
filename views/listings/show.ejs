@@ -1,4 +1,6 @@
 <%- layout("/layouts/boilerplate") %>
+
+
 <body>
     <div class="row">
         <div class="col-8 offset-3 mt-3">
@@ -12,7 +14,6 @@
                 <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %></p>
                 <p class="card-text"><%= listing.location %></p>
                 <p class="card-text"><%= listing.country %></p>
-
             </div>
         </div>
 
@@ -37,7 +38,7 @@
             <% if (currUser) { %>
             <h4>Leave a review</h4>
             <form 
-                class="needs-validation mb-3"
+                class="needs-validation"
                 novalidate
                 action="/listings/<%= listing._id %>/reviews"
                 method="POST">
@@ -83,31 +84,46 @@
                             
                 </div>
                 
-                <button class="btn btn-outline-dark mb-3">Submit a review</button>
+                <button class="btn btn-outline-dark">Submit a review</button>
+                <hr>
             </form>
 
             <% } %>
+            <% if (listing.reviews.length > 0) { %>
+             
+            
             <div class="row">
                 <p><b>All Reviews</b></p>
                 <% for( review of listing.reviews ) { %>
-                    <div class="card col-5  ms-3 mb-3">
+                    <div class="card col-5 ms-3 mb-3">
                         <h4 class="mt-3"><i>@<%= review.author.username %></i> </h4>
                         <p class="starability-result card-text" data-rating="<%= review.rating %>">
                         <p><%= review.comment  %> </p>
                         <form class="mb-3" method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
                             <button class="btn btn-sm btn-dark">Delete</button>
                         </form>
-
                     </div>
                 <% } %>
             </div>
-            
-
-
+            <% } %>
         </div>
+        
+
+        <div class="col-8 offset-3 mb-3">
+                <h4>Where you'll be </h4>
+                <div id="map"></div>
+            </div>
 
     </div>
 
 </body>
+<!-- Put this right before the map.js script tag -->
+<script>
+    const rawCoordinates = '<%= JSON.stringify(listing.geometry && listing.geometry.coordinates ? listing.geometry.coordinates : [72.7854, 24.4807]) %>';
+    const listingCoordinates = JSON.parse(rawCoordinates);
+    const listingLocationName = '<%= listing.location %>';
+</script>
+
+<script type="module" src="/js/map.js"></script>
 
 

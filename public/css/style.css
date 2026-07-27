@@ -124,3 +124,8 @@ textarea{
 .show-card-img-top{
     border-radius: 0;
 }
+
+#map{
+    height: 25rem;
+    width: 80vh;
+}
