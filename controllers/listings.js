@@ -1,4 +1,5 @@
 const Listing = require("../models/listing.js");
+const { getSortedCountries } = require('../utils/countryHelpers.js');
 
 module.exports.index = async (req,res) => {
         const allListings = await Listing.find();
@@ -7,7 +8,8 @@ module.exports.index = async (req,res) => {
 
 module.exports.renderNewForm = (req,res) => { 
         console.log(req.user);
-        res.render("listings/new.ejs");
+        const countryList = getSortedCountries();
+        res.render("listings/new.ejs", { countryList});
 };
 
 module.exports.createListing = async (req, res, next) => {
@@ -67,8 +69,9 @@ module.exports.renderEditForm = async (req,res) => {
             return res.redirect("/listings");
         }
         let originalImageUrl = listing.image.url;
+        const countryList = getSortedCountries();
         originalImageUrl = originalImageUrl.replace("/upload", "/upload/h_300,w_250,c_fit");
-        res.render("listings/edit", { listing, originalImageUrl });
+        res.render("listings/edit", { listing, originalImageUrl, countryList });
         
 };
 
