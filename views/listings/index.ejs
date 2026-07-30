@@ -93,41 +93,44 @@
     </div>
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 mt-3">
         <% for( listing of allListings ) { %>
-            <a href="/listings/<%= listing._id %>" class="listing-link">
-                <div class="card show-card col listing-card">
-                    <div style="position: relative; width: 100%;">
-                        <img src="<%= listing.image.url %>" 
-                            class="all-card-img-top" 
-                            alt="listing_image"
-                            style="height: 18rem; width: 100%; object-fit: cover;">
-                        
-                        <!-- Text Overlay on Image -->
-                        <div style="position: absolute;
-                                    top: 12px;
-                                    left: 12px; 
-                                    background: rgba(255, 255, 255, 0.95);
-                                    color: #222; 
-                                    font-size: 12px; 
-                                    font-weight: 500;
-                                    letter-spacing: 0.3px;
-                                    padding: 4px 12px;
-                                    border-radius: 20px;
-                                    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                                    backdrop-filter: blur(4px);
-                                    border: 1px solid rgba(255, 255, 255, 0.3);">
-                            <%= listing.type.charAt(0).toUpperCase() + listing.type.slice(1).toLowerCase()  %>
+            <div class="card limited-listing-card" >
 
-                        </div>
+                    <!-- listing image container -->
+                    <div class="limited-listing-card-image-container" style="position: relative; width: 100%;">
+                        <a href="/listings/<%= listing._id %>" class="listing-link">
+                                <img src="<%= listing.image.url %>" 
+                                class="limited-listing-card-image" 
+                                alt="listing_image">
+                            <!-- Text Overlay on Image -->
+                            <div class="type">
+                                <%= listing.type.charAt(0).toUpperCase() + listing.type.slice(1).toLowerCase()  %>
+                            </div>
+                        </a>  
                     </div>
+                    
 
-                    <div class="card-body">
-                        <p class="card-text">
-                            <b style="font-weight: 500;"><%= listing.title %></b> <br>
-                            &#8377; <%= listing.price.toLocaleString("en-IN") %> / night <br>
-                            <span style="font-weight: 300; margin: 0; padding: 0;"><%= listing.country %></span>
+                    <a href="/listings/<%= listing._id %>" class="listing-link">
+
+                        <div class="listing-card-details">
                             
-                        </p>
-                    </div>
-                </div>
-            </a>
-        <% } %>     
+                                <div>
+                                    <h6 class="listing-title"><%= listing.title %></h6>
+                                </div>
+                                <p style="font-weight: 300; margin: 0; padding: 0;"><%= listing.country %></p>
+                                <div class="listing-card-price">
+                                    <strong>&#8377; 
+                                        <span class="base-price"><%= listing.price.toLocaleString("en-IN") %></span>
+                                    </strong>
+                                    <span> / night </span>
+                                </div>   
+                            
+                        </div>
+
+                    </a>
+                
+                
+            </div>
+        <% } %> 
+
+        
+    </div>    
