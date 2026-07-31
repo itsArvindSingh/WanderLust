@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Background -->
+    <rect width="200" height="200" rx="45" fill="#FF5A5F"/>
+
+    <!-- Roof -->
+    <path
+        d="M45 92
+           L100 48
+           L155 92"
+        fill="none"
+        stroke="white"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+    <!-- House -->
+    <rect
+        x="58"
+        y="90"
+        width="84"
+        height="70"
+        rx="8"
+        fill="white"/>
+
+    <!-- Door -->
+    <rect
+        x="90"
+        y="115"
+        width="20"
+        height="45"
+        rx="4"
+        fill="#FF5A5F"/>
+
+    <!-- Left Window -->
+    <rect
+        x="72"
+        y="104"
+        width="14"
+        height="14"
+        rx="2"
+        fill="#FF5A5F"/>
+
+    <!-- Right Window -->
+    <rect
+        x="114"
+        y="104"
+        width="14"
+        height="14"
+        rx="2"
+        fill="#FF5A5F"/>
+</svg>

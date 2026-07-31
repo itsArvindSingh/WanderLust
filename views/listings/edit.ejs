@@ -55,14 +55,24 @@
                     
                     <div class="mb-3 col-6">
                         <label class="form-label" for="country">Country</label>
-                        <input 
+                        <select 
                             class="form-control" 
                             id="country" 
-                            type="text" 
+                            type="select" 
                             name="listing[country]" 
                             value="<%= listing.country %>"
                             required>
-                            <div class="invalid-feedback">Please Enter Country</div>
+                        
+                        <option value="">Select a country</option>
+                        <% countryList.forEach(country => { %>
+                        <option value="<%= country.code %>" <%= listing.country === country.code ? 'selected' : '' %>>
+                            <%= country.name %>
+                        </option>
+
+                        <% }); %>
+
+                        </select>
+                        <div class="invalid-feedback">Please Enter Country</div>
                     </div>
                     
                     

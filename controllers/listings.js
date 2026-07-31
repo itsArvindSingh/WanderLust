@@ -1,20 +1,21 @@
 const Listing = require("../models/listing.js");
-const { getSortedCountries } = require('../utils/countryHelpers.js');
+const { getSortedCountries, getCountryName } = require('../utils/countryHelpers.js');
+const { getTypes, getCategories } = require("../utils/helpers.js");
 
 module.exports.index = async (req,res) => {
         const allListings = await Listing.find();
-        res.render("listings/index", {allListings} );
+        res.render("listings/index", {allListings, getCountryName, getCategories} );
 };
 
 module.exports.renderNewForm = (req,res) => { 
-        console.log(req.user);
-        const countryList = getSortedCountries();
-        res.render("listings/new.ejs", { countryList});
+    console.log(req.user);
+    const countryList = getSortedCountries();
+    res.render("listings/new.ejs", { countryList, getTypes, getCategories});
 };
 
 module.exports.createListing = async (req, res, next) => {
     // 1. Geocode the location provided in req.body.listing
-    const locationQuery = req.body.listing.location;
+    const locationQuery = req.body.listing.location + ', '+ getCountryName(req.body.listing.country);
     const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
         locationQuery
     )}&format=geojson&limit=1`;
@@ -31,6 +32,7 @@ module.exports.createListing = async (req, res, next) => {
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
     newListing.image = { url, filename };
+    const geoData = await response.json();
 
     if (geoData.features && geoData.features.length > 0) {
         newListing.geometry = geoData.features[0].geometry; // { type: 'Point', coordinates: [lng, lat] }
@@ -57,7 +59,7 @@ module.exports.showListing = async (req,res) => {
             res.redirect("/listings");
         }else{
             // console.log(listing.owner.username);
-            res.render("listings/show", { listing })
+            res.render("listings/show", { listing, getCountryName })
     };
 };
 

@@ -1,87 +1,16 @@
 <%- layout("/layouts/boilerplate") %> 
 <body>
     <style>
-    .filter{
-             margin-top: 2rem;
-             margin-right: 2rem;
-             text-align: center;
-             opacity: 0.7;
-    }
-
-    .filter:hover{
-        opacity: 1 ;
-        cursor: pointer;
-    }
-    #filters{
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .filter p{
-        font-size: 0.8rem;
-    }
+    
     </style>
     <div id="filters">
-        <div class="filter">
-            <div><i class="fa-solid fa-fire"></i></div>
-            <p>Trending</p> 
-        </div>
 
-        <div class="filter">
-            <div><i class="fa-solid fa-bed"></i></div>
-            <p>Rooms</p> 
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-mountain-city"></i></div>
-            <p>Iconic Cities</p> 
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-mountain"></i></div>
-            <p>Mountains</p> 
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-dungeon"></i></div>
-            <p>Caves</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-house-chimney-window"></i></div>
-            <p>Luxury</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-brands fa-fort-awesome"></i></div>
-            <p>Castles</p> 
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-person-swimming"></i></div>
-            <p>Amazing Pools</p> 
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-tree"></i></div>
-            <p>Cabins</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-umbrella-beach"></i></div>
-            <p>Beachfront</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-campground"></i></div>
-            <p>Camping</p>
-        </div>
-
-        <div class="filter">
-            <div><i class="fa-solid fa-sailboat"></i></div>
-            <p>Boats</p>
-        </div>
-
+        <% getCategories().forEach(category => { %>
+            <div class="filter">
+                <div><i class="<%= category.icon %>"></i></div>
+                <p><%= category.label %></p> 
+            </div>
+        <% }) %>
 
         <div class="tax-toggle">
             <div class="form-check-reverse form-switch">
@@ -116,7 +45,7 @@
                                 <div>
                                     <h6 class="listing-title"><%= listing.title %></h6>
                                 </div>
-                                <p style="font-weight: 300; margin: 0; padding: 0;"><%= listing.country %></p>
+                                <p style="font-weight: 300; margin: 0; padding: 0;"><%= getCountryName(listing.country) %></p>
                                 <div class="listing-card-price">
                                     <strong>&#8377; 
                                         <span class="base-price"><%= listing.price.toLocaleString("en-IN") %></span>

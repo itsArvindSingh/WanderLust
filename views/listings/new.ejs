@@ -47,7 +47,7 @@
                         <input 
                             class="form-control" 
                             id="price" 
-                            \\type="number"  
+                            type="number"  
                             name="listing[price]" 
                             placeholder="Enter Price" 
                             required>
@@ -57,9 +57,9 @@
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="country">Country</label>
                         <select class="form-select" id="country" name="listing[country]" required>
-                            <option value="">Select a Country</option>
+                            <option value="" selected>Select a Country</option>
                             <% countryList.forEach(function(country) { %>
-                                <option value="<%= country.code %>" <%= listing.country === country.code ? 'selected' : '' %>>
+                                <option value="<%= country.code %>">
                                     <%= country.name %>
                                 </option>
                             <% }); %>
@@ -73,35 +73,22 @@
                         <label for="type" class="form-label">Type</label>
                         <select class="form-select" id="type" name="listing[type]" required>
                             <option value="" selected>Select Type</option>
-                            <option value="villa">Villa</option>
-                            <option value="house">House</option>
-                            <option value="hotel">Hotel</option>
-                            <option value="apartment">Apartment</option>
-                            <option value="cottage">Cottage</option>
-                            <option value="bungalow">Bungalow</option>
-                            <option value="cabin">Cabin</option>
-                            <option value="castle">Castle</option>
-                            <option value="boat">Boat</option>
+                            <%  getTypes().forEach((type) => { %>
+                                <option value="<%= type.value %>"><%= type.label %></option>
+                            <% });  %>
+                            
+                           
                         </select>
                     </div>
 
 
                     <div class="mb-3 col-md-6">
-                        <label class="form-label" for="category">Category/Filter</label>
+                        <label class="form-label" for="category">Category</label>
                         <select class="form-select" id="category" name="listing[category]" required>
                             <option value="" selected>Select Category</option>
-                            <option value="trending">Trending</option>
-                            <option value="rooms">Rooms</option>
-                            <option value="iconic-cities">Iconic Cities</option>
-                            <option value="mountains">Mountains</option>
-                            <option value="caves">Caves</option>
-                            <option value="luxury">Luxury</option>
-                            <option value="castles">Castles</option>
-                            <option value="amazing-pools">Amazing Pools</option>
-                            <option value="cabins">Cabins</option>
-                            <option value="beachfront">Beachfront</option>
-                            <option value="camping">Camping</option>
-                            <option value="boats">Boats</option>
+                            <% getCategories().forEach(category => { %>
+                                <option value="<%= category.value %>"><%= category.label %></option>
+                            <% }); %>
                         </select>
                         <div class="invalid-feedback">Please select a category</div>
                     </div>

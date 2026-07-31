@@ -12,7 +12,12 @@ const getSortedCountries = () => {
     return countryList.sort((a, b) => a.name.localeCompare(b.name));
 };
 
+const getCountryName = (code) => {
+    return countries[code]?.name || code;
+}
+
 module.exports = {
     getCountryList,
-    getSortedCountries
+    getSortedCountries,
+    getCountryName
 };

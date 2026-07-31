@@ -1,3 +1,4 @@
+// seed.js or listings.js
 const sampleListing = [
   {
     title: "Modern Beachfront Villa",
@@ -8,7 +9,7 @@ const sampleListing = [
     },
     price: 8500,
     location: "Malibu",
-    country: "USA",
+    country: "US",  // United States
     type: "villa",
     category: "beachfront",
     geometry: {
@@ -25,7 +26,7 @@ const sampleListing = [
     },
     price: 4500,
     location: "Aspen",
-    country: "USA",
+    country: "US",  // United States
     type: "house",
     category: "cabins",
     geometry: {
@@ -42,7 +43,7 @@ const sampleListing = [
     },
     price: 12000,
     location: "New York",
-    country: "USA",
+    country: "US",  // United States
     type: "hotel",
     category: "luxury",
     geometry: {
@@ -59,7 +60,7 @@ const sampleListing = [
     },
     price: 15000,
     location: "Bora Bora",
-    country: "French Polynesia",
+    country: "PF",  // French Polynesia
     type: "villa",
     category: "beachfront",
     geometry: {
@@ -76,7 +77,7 @@ const sampleListing = [
     },
     price: 6000,
     location: "Tuscany",
-    country: "Italy",
+    country: "IT",  // Italy
     type: "house",
     category: "luxury",
     geometry: {
@@ -93,7 +94,7 @@ const sampleListing = [
     },
     price: 5000,
     location: "Chicago",
-    country: "USA",
+    country: "US",  // United States
     type: "apartment",
     category: "iconic-cities",
     geometry: {
@@ -110,7 +111,7 @@ const sampleListing = [
     },
     price: 4000,
     location: "Cornwall",
-    country: "UK",
+    country: "GB",  // United Kingdom
     type: "house",
     category: "beachfront",
     geometry: {
@@ -127,7 +128,7 @@ const sampleListing = [
     },
     price: 18000,
     location: "Los Angeles",
-    country: "USA",
+    country: "US",  // United States
     type: "house",
     category: "luxury",
     geometry: {
@@ -144,7 +145,7 @@ const sampleListing = [
     },
     price: 8000,
     location: "London",
-    country: "UK",
+    country: "GB",  // United Kingdom
     type: "house",
     category: "iconic-cities",
     geometry: {
@@ -161,7 +162,7 @@ const sampleListing = [
     },
     price: 3000,
     location: "Berlin",
-    country: "Germany",
+    country: "DE",  // Germany
     type: "apartment",
     category: "iconic-cities",
     geometry: {
@@ -178,7 +179,7 @@ const sampleListing = [
     },
     price: 14000,
     location: "Santorini",
-    country: "Greece",
+    country: "GR",  // Greece
     type: "villa",
     category: "luxury",
     geometry: {
@@ -195,7 +196,7 @@ const sampleListing = [
     },
     price: 4500,
     location: "Amsterdam",
-    country: "Netherlands",
+    country: "NL",  // Netherlands
     type: "apartment",
     category: "iconic-cities",
     geometry: {
@@ -212,7 +213,7 @@ const sampleListing = [
     },
     price: 13000,
     location: "Miami",
-    country: "USA",
+    country: "US",  // United States
     type: "hotel",
     category: "beachfront",
     geometry: {
@@ -229,7 +230,7 @@ const sampleListing = [
     },
     price: 22000,
     location: "Provence",
-    country: "France",
+    country: "FR",  // France
     type: "villa",
     category: "luxury",
     geometry: {
@@ -246,7 +247,7 @@ const sampleListing = [
     },
     price: 7500,
     location: "Kyoto",
-    country: "Japan",
+    country: "JP",  // Japan
     type: "house",
     category: "cabins",
     geometry: {
