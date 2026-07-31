@@ -11,6 +11,9 @@ A full-stack Airbnb-inspired web application where users can discover, create, a
 - Flash Messages
 - Server-side Validation
 - Responsive UI
+- Category Configuration
+- Type Configuration
+- Country Configuration
 
 ## 🛠 Tech Stack
 
