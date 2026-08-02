@@ -1,0 +1,11 @@
+    <div id="filters">
+
+        <% getCategories().forEach(category => { %>
+            <div class="filter">
+                <div><i class="<%= category.icon %>"></i></div>
+                <p class="filter-label"><%= category.label %></p> 
+            </div>
+        <% }) %>
+
+    </div>
+    <hr>

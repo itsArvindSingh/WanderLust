@@ -1,0 +1,68 @@
+/* filter style */
+
+
+
+.filter{
+    margin-top: 2rem;
+    margin-right: 2rem;
+    text-align: center;
+    opacity: 0.6;
+    font-size: 1.25rem;
+
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+    transition: opacity 0.3s ease,
+                transform 0.3s ease;
+}
+
+.filter:hover{
+    opacity: 1 ;
+    cursor: pointer;
+    transform: translateY(-3px);
+}
+
+.filter::after {
+    content: "";
+    position: absolute;
+    bottom: .3rem;
+    left: 50%;
+
+    width: 0;
+    height: 2px;
+
+    background: #222;
+    border-radius: 2px;
+
+    transform: translateX(-50%);
+}
+
+.filter.active {
+    opacity: 1;
+}
+
+/* On hover */
+.filter:hover::after {
+    width: 100%;
+    opacity: .4;
+    
+}
+
+.filter.active::after {
+    width: 100%;
+    opacity: 1;
+}
+
+
+
+#filters{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter p{
+    font-size: 0.8rem;
+}

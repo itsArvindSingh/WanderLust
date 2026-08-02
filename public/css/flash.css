@@ -1,0 +1,42 @@
+.flash-message{
+    z-index: 2;
+    position: fixed;
+    left: .1rem;
+    bottom: .1rem;
+}
+
+#message-alert{
+    height: auto;
+    width: auto;
+    padding: 1rem;
+    margin: 1rem;
+    margin-left: 2.5rem;
+}
+
+.flash-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    transform-origin: left;
+    animation: progressShrink 5s linear forwards;
+}
+
+.alert-success .flash-progress {
+    background: #198754;
+}
+
+.alert-danger .flash-progress {
+    background: #dc3545;
+}
+
+@keyframes progressShrink {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}

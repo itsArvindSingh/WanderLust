@@ -3,10 +3,20 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* min-width: 100vh; */
 }
 
-.container{
-    flex:1;
+.container-fluid{
+    padding: 0;
+    flex: 1;
+}
+
+.body-container{
+    padding: 0 3rem 3rem 3rem;
+}
+
+.navbar-container{
+    padding: 3rem;
 }
 
 /* navbar */
@@ -21,7 +31,71 @@ body{
 
 .nav-link{
     color: #222222 !important;
+    padding: 0;
 }
+
+.navbar-nav{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup{
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #222222;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    background-color: white;
+    border-width: 0.09rem;
+}
+
+.login{
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ebebeb;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    border: none;
+    background-color: #ff1744;
+}
+
+.logout{
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 490;
+    color: #ebebeb;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    border: none;
+    background-color: #ff1744;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wanderlust-home{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.fa-house-chimney{
+    color: #fb4753;
+    margin-right: .5rem;
+}
+
+.wanderlust-home-text{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
 
 
 /* footer */
@@ -200,24 +274,3 @@ textarea{
     width: 80vh;
 }
 
-/* filter style */
-
-.filter{
-    margin-top: 2rem;
-    margin-right: 2rem;
-    text-align: center;
-    opacity: 0.7;
-}
-
-.filter:hover{
-    opacity: 1 ;
-    cursor: pointer;
-}
-#filters{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.filter p{
-    font-size: 0.8rem;
-}
