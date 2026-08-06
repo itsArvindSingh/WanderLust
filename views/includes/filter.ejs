@@ -1,11 +1,62 @@
-    <div id="filters">
+
+  <div id="filters" class="collapse show">
+
+        <div class="filter <% if (!filterCategory) { %> active <% } %> ">
+            <a class="filter-link" href="/listings">
+            <div><i class="fa-solid fa-border-all"></i></div>
+            <p class="filter-label">All Homes</p> 
+        </a>
+        </div>
 
         <% getCategories().forEach(category => { %>
-            <div class="filter">
-                <div><i class="<%= category.icon %>"></i></div>
-                <p class="filter-label"><%= category.label %></p> 
+            <div class="filter <% if (filterCategory == category.value ) { %> active <% } %> ">
+                <a class="filter-link" href="/listings?category=<%= category.value %>">
+                    <div><i class="<%= category.icon %>"></i></div>
+                    <p class="filter-label"><%= category.label %></p> 
+                </a>
+                
             </div>
         <% }) %>
 
+
     </div>
-    <hr>
+
+
+    <div class="listings-toolbar">
+        <div><%= allListings.length %>  places to stay</div>
+
+        <div class="toolbar-right">
+            
+            <div class="select-wrapper">
+                <select class="sort-listing-methods" name="sort-method" id="sort-listing">
+                    <option value="new-to-old">Newest First</option>
+                    <option value="low-to-high-price">Price: Low to High</option>
+                    <option value="high-to-low-price">Price: High to Low</option>
+                    <option value="old-to-new">Oldest First</option>
+                </select>
+
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+            </div>
+
+            <div class="tax-toggle">
+                <span class="tax-toggle-text">Display total before taxes</span>
+
+                <label class="switch">
+                    <input 
+                        type="checkbox" 
+                        id="tax-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+        </div>
+        
+        
+    </div>
+    <script>
+        let texToggle = document.getElementById("tax-toggle");
+        texToggle.addEventListener("click", () => {
+            console.log("Hello switch clicked");
+        })
+    </script>
+   

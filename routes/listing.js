@@ -18,6 +18,8 @@ router.route("")
 // to add new listing 
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
+
+
 //  to show a particular listing info and to save edited dataf
 router.route("/:id")
     .get(wrapAsync(listingController.showListing))

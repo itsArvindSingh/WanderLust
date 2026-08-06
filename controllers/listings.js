@@ -3,9 +3,19 @@ const { getSortedCountries, getCountryName } = require('../utils/countryHelpers.
 const { getTypes, getCategories } = require("../utils/helpers.js");
 
 module.exports.index = async (req,res) => {
-        const allListings = await Listing.find();
-        res.render("listings/index", {allListings, getCountryName, getCategories} );
+    const filterCategory = req.query.category;
+
+    let allListings;
+
+    if (filterCategory){
+        allListings = await Listing.find({category: filterCategory});
+    }else{
+        allListings = await Listing.find();
+    }
+
+    res.render("listings/index", {allListings, filterCategory, getCountryName, getCategories} );
 };
+
 
 module.exports.renderNewForm = (req,res) => { 
     console.log(req.user);
