@@ -1,5 +1,11 @@
-if (process.env.NODE_ENV != "production"){
-    require('dotenv').config();
+const dns = require("dns");
+
+dns.setServers([
+    "8.8.8.8",
+    "1.1.1.1"
+]);
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
 }
 
 const express = require("express");
@@ -103,6 +109,8 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(8080, () => {
-    console.log(`sever is running on port 8080`);
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server is listening on port ${PORT}`);
 });
