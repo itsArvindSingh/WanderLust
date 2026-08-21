@@ -51,17 +51,6 @@ const sessionOptions = {
 
 
 // const mangoUrl = "mongodb://127.0.0.1:27017/wanderlust";
-const dbUrl = process.env.ATALASDB_URL;
-
-main().then((res) => {
-    console.log("successfully connected");
-}).catch((err) => {
-    console.log(err);
-});
-
-async function main() {
-    await mongoose.connect(dbUrl);
-};
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -109,8 +98,24 @@ app.use((err, req, res, next) => {
     });
 });
 
-const PORT = process.env.PORT || 8080;
+const dbUrl = process.env.ATLASDB_URL;
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server is listening on port ${PORT}`);
-});
+async function main() {
+    try {
+        await mongoose.connect(dbUrl);
+        console.log("Successfully connected to MongoDB");
+
+        const PORT = process.env.PORT || 8080;
+
+        app.listen(PORT, "0.0.0.0", () => {
+            console.log(`Server is listening on port ${PORT}`);
+        });
+
+    } catch (err) {
+        console.error("MongoDB connection failed:");
+        console.error(err);
+        process.exit(1);
+    }
+}
+
+main();
