@@ -20,14 +20,14 @@
 
          
         
-        <div class="btns col-8 offset-3">
+        <div class="btns col-8 mt-3 offset-3">
             <form method="get" action="/listings/<%= listing._id %>/edit">
-                <button class="btn btn-dark new-btn mb-3 me-3">Edit</button>
+                <button class="btn btn-dark new-btn me-3">Edit</button>
             </form>
         
         
             <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
-                <button class="btn btn-dark mb-3">Delete</button>
+                <button class="btn btn-dark">Delete</button>
             </form>
         </div>
 

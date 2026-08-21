@@ -16,8 +16,16 @@ const getCountryName = (code) => {
     return countries[code]?.name || code;
 }
 
+const getCountryCode = (name) => {
+    const code = Object.keys(countries).find(
+        key => countries[key].name.toLowerCase() === name.toLowerCase()
+    );
+    return code;
+}
+
 module.exports = {
     getCountryList,
     getSortedCountries,
-    getCountryName
+    getCountryName,
+    getCountryCode
 };

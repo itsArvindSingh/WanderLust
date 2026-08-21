@@ -1,13 +1,33 @@
 const Listing = require("../models/listing.js");
-const { getSortedCountries, getCountryName } = require('../utils/countryHelpers.js');
+const { getSortedCountries, getCountryName, getCountryCode } = require('../utils/countryHelpers.js');
 const { getTypes, getCategories } = require("../utils/helpers.js");
+const  ExpressError  = require("../utils/ExpressError.js");
 
 module.exports.index = async (req,res) => {
     const filterCategory = req.query.category;
 
+    const searchQuery = req.query.q?.trim();
+
     let allListings;
 
-    if (filterCategory){
+    
+
+    if(searchQuery){
+        const searchConditions = [{title: {$regex : searchQuery , $options: "i"}},
+                {location: {$regex : searchQuery , $options: "i"}}];
+        
+        let countryCode;
+        countryCode = getCountryCode(searchQuery);
+        console.log("Search:", searchQuery);
+        console.log("Country code:", getCountryCode(searchQuery));
+        if(countryCode){
+            searchConditions.push({country: countryCode});
+        }
+
+        allListings = await Listing.find(
+            { $or: searchConditions}
+        );
+    }else if (filterCategory){
         allListings = await Listing.find({category: filterCategory});
     }else{
         allListings = await Listing.find();
@@ -25,32 +45,44 @@ module.exports.renderNewForm = (req,res) => {
 
 module.exports.createListing = async (req, res, next) => {
     // 1. Geocode the location provided in req.body.listing
-    const locationQuery = req.body.listing.location + ', '+ getCountryName(req.body.listing.country);
-    const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-        locationQuery
-    )}&format=geojson&limit=1`;
+    try{
+        const locationQuery = req.body.listing.location + ', '+ getCountryName(req.body.listing.country);
+        const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+            locationQuery
+        )}&format=geojson&limit=1`;
 
-    const response = await fetch(geocodeUrl, {
-        headers: {
-            'User-Agent': 'WanderlustApp/1.0'
+        const response = await fetch(geocodeUrl, {
+            headers: {
+                'User-Agent': 'WanderlustApp/1.0'
+            }
+        });
+
+        if(!response.ok){
+            throw new Error("Geocoding request failed");
         }
-    });
 
-    let url = req.file.path;
-    let filename = req.file.filename;
+        const geoData = await response.json();
+        
+        if (!geoData.features || geoData.features.length === 0) {
+            throw new ExpressError(
+                400,
+                "Could not find the location. Please enter a valid location."
+            );
+        }
 
-    const newListing = new Listing(req.body.listing);
-    newListing.owner = req.user._id;
-    newListing.image = { url, filename };
-    const geoData = await response.json();
+        let url = req.file.path;
+        let filename = req.file.filename;
 
-    if (geoData.features && geoData.features.length > 0) {
+        const newListing = new Listing(req.body.listing);
+        newListing.owner = req.user._id;
+        newListing.image = { url, filename };
         newListing.geometry = geoData.features[0].geometry; // { type: 'Point', coordinates: [lng, lat] }
+        await newListing.save();
+        req.flash("success", "New Listing Created");
+        res.redirect("/listings");
+    }catch (err){
+        next(err);
     }
-
-    await newListing.save();
-    req.flash("success", "New Listing Created");
-    res.redirect("/listings");
 };
 
 module.exports.showListing = async (req,res) => {

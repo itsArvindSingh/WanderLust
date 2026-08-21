@@ -44,7 +44,8 @@ const sessionOptions = {
 
 
 
-const mangoUrl = "mongodb://127.0.0.1:27017/wanderlust";
+// const mangoUrl = "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.ATALASDB_URL;
 
 main().then((res) => {
     console.log("successfully connected");
@@ -53,7 +54,7 @@ main().then((res) => {
 });
 
 async function main() {
-    await mongoose.connect(mangoUrl);
+    await mongoose.connect(dbUrl);
 };
 
 app.use(session(sessionOptions));

@@ -189,3 +189,7 @@
 .tax-toggle:hover{
     border-color: #c5c5c5;
 }
+
+.tax-info{
+    display: none;
+}

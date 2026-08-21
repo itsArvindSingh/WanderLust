@@ -14,13 +14,15 @@ router.route("")
     .get(wrapAsync(listingController.index))
     .post(isLoggedIn, upload.single('listing[image]'), validateListing, wrapAsync(listingController.createListing));
 
+router.route("/search")
+    .get(wrapAsync(listingController.index))
 
 // to add new listing 
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
 
 
-//  to show a particular listing info and to save edited dataf
+//  to show a particular listing info and to save edited data
 router.route("/:id")
     .get(wrapAsync(listingController.showListing))
     .put(isLoggedIn, isOwner, upload.single('listing[image]'), validateListing, wrapAsync(listingController.updateListing))

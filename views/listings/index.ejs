@@ -26,12 +26,14 @@
                                 <div>
                                     <h6 class="listing-title"><%= listing.title %></h6>
                                 </div>
-                                <p style="font-weight: 300; margin: 0; padding: 0;"><%= getCountryName(listing.country) %></p>
+                                <p style="font-weight: 300; margin: 0; padding: 0;"><%= listing.location %>, <%= getCountryName(listing.country) %></p>
                                 <div class="listing-card-price">
                                     <strong>&#8377; 
                                         <span class="base-price"><%= listing.price.toLocaleString("en-IN") %></span>
+                                        
                                     </strong>
-                                    <span> / night </span>
+                                    <span> / night</span>
+                                    <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
                                 </div>   
                             
                         </div>
